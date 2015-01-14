@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include ../../partials/headers %>
+  <script type="text/javascript" src=""></script>
+</head>
+<body>
+  <% include ../../partials/header %>
+
+  <div ng-app="myApp" class="container-fluid">
+    <div ng-controller="AdminMenuController">
+      <div class="row">
+        <section id="userlist" class="col-xs-4">
+          <div class="panel panel-default" ng-show="p_idx==0">
+            <div class="panel-body">
+              <div class="form-group clearfix" style="margin-bottom: 1em;">
+                <div class="col-sm-6">
+                  <input type="text" ng-model="query_name" class="form-control" placeholder="菜名" >
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-default" ng-click="switch_pannel(2)">创建新的菜单</button>
+                </div>
+              </div>
+              <table class="table table-striped">
+                <tr>
+                  <th>菜名</th>
+                  <th>价格</th>
+                  <th>next</th>
+                </tr>
+                <tr ng-repeat="menu in menus | filter: query_name">
+                  <td>{{menu.name}}</td>
+                  <td>{{menu.price}}</td>
+                  <td>
+                    <button type="button"class="btn btn-default" ng-click="add_menu_0(menu._id)">
+                      <span class="glyphicon glyphicon-arrow-right"></span>
+                    </button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <div class="panel panel-default" ng-show="p_idx==1">
+            <div class="panel-body">
+              <table class="table table-striped">
+                <tr>
+                  <th>用户名</th>
+                  <td>next</td>
+                </tr>
+                <tr ng-repeat="user in users">
+                  <td>{{user.username}}</td>
+                  <td>
+                    <button type="button"class="btn btn-default" ng-click="add_menu_1($index)">
+                      <span class="glyphicon glyphicon-arrow-right"></span>
+                    </button>
+                  </td>
+                </tr>
+              </table>
+              <hr/>
+              <button type="button" class="btn btn-default" ng-click="cancel_menu_creation()">取消</button>
+            </div>
+          </div>
+
+          <div class="panel panel-default" ng-show="p_idx==2">
+            <div class="panel-body">
+              <form role="form" novalidate name="new_menu_form">
+                <div class="form-group">
+                  <div>
+                    <input type="text" required ng-model="m_name" size="10"class="form-control"  placeholder="菜名" >
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div>
+                    <input type="number" required ng-model="m_price" size="10" class="form-control"  placeholder="价格" >
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div>
+                    <button type="button" class="btn btn-default" ng-click="switch_pannel(0)">取消</button>
+                    <button class="btn btn-primary" ng-disabled="new_menu_form.$invalid" ng-click="new_menu()">创建</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+      </section>
+
+      <section id="user" class="col-xs-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">订单信息</div>
+          <div class="panel-body">
+            <table class="table table-striped">
+              <tr>
+                <th>菜名</th>
+                <th>价格</th>
+                <th>用户名</th>
+                <th>操作</th>
+              </tr>
+              <tr ng-repeat="order in orders">
+                <td>{{order.menu.name}}</td>
+                <td>{{order.menu.price}}</td>
+                <td>{{order.username}}</td>
+                <td>
+                  <button ng-click="remove_order($index)" type="button" class="btn btn-default">移除</button>
+                </td>
+              </tr>
+            </table>
+          </hr>
+          <button ng-click="generate_order()" type="button" class="btn btn-default" ng-disabled="orders.length == 0">生成</button>
+
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+</div>
+
+<% include ../../partials/footer %>
+</body>
+</html>

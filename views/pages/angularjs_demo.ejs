@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include ../partials/headers %>
+  <script type="text/javascript" src=""></script>
+</head>
+<body>
+  <% include ../partials/header %>
+
+  <div ng-app="myApp" class="container-fluid">
+    <div ng-controller="SimpleController">
+      <div class="row">
+        <div class="col-xs-3">
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Panel title</h3>
+            </div>
+            <div class="panel-body">
+              <div class="list-group" ng-repeat="user in userlist">
+                <a href="#" class="list-group-item" ng-click="change_log($index)" ng-class='{active: $index==focused_row}'>
+                  <h4 class="list-group-item-heading">{{user.username}}</h4>
+                  <p class="list-group-item-text">...</p>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-xs-8">
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Panel title</h3>
+            </div>
+            <div class="panel-body">
+              <!-- add class .active to highlight this item -->
+              <div class="list-group" ng-repeat="log in logs">
+                <a href="#" class="list-group-item">{{log.description}}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  
+  <% include ../partials/footer %>
+</body>
+</html>

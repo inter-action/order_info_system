@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript">
+        var source = new EventSource('/events');
+        source.addEventListener('message', function(e) {
+          console.log(e.data);
+        }, false);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

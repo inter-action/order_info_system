@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include ../../partials/headers %>
+  <script type="text/javascript" src=""></script>
+</head>
+<body>
+  <% include ../../partials/header %>
+  <!-- 
+  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+  -->
+  <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+  <script>
+  var chat = io.connect('http://localhost/chat');
+  
+  chat.on('chat', function (data) {
+    console.log('receive data: ', data);
+    chat.emit('chat', {hi: 'hello world'});
+  });
+  </script>
+
+  <% include ../../partials/footer %>
+</body>
+</html>

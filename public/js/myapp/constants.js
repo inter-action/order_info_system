@@ -1,0 +1,4 @@
+var CONSTANTS = {
+    LOGS_TYPE_COMMON: 0x00,
+    LOGS_TYPE_MONEY: 0x01
+};

@@ -1,0 +1,13 @@
+$.post('/board', {
+    username: 'alexander',
+    ip: '192.168.0.1',
+    htmlBody: 'hey im here'
+})
+
+
+$.ajax({
+    url: '/orders',
+    type: 'POST',
+    data: '{"order":[{"menus":[{"name":"noodles","price":3}],"useraname":"link","uid":"545b0e20382e651c2167ceb1"}]}',
+    contentType: 'application/json'
+})

@@ -1,0 +1,167 @@
+Project Init Procedure:
+
+    npm install
+    npm install grunt-contribe-coffee --save-dev
+    npm install grunt-newer --save-dev
+    npm install load-grunt-tasks --save-dev
+    npm install time-grunt --save-dev
+
+    # make sublime coffeelint plugin work
+    coffeelint --makeconfig > coffeelint.json
+        then change idention to 4 space
+        change max_line_length to 140
+    
+    npm install jasmine-node --save-dev
+    npm install grunt-jasmine-node --save-dev
+    npm install winston --save # logger, deprecated, winston logger cant logger `Error` object
+    npm install bunyan --save #logger
+
+    npm install mkdirp --save # util help create dir with parent path
+
+    npm install express --save #express framework
+    npm install underscore --save #underscore
+
+    grunt watch #start a watch process
+
+    ## npm
+        [npm commands doc] (https://www.npmjs.org/doc/)
+
+    ## express
+
+        ### express fast creation
+            nmp install -g express
+            npm install -g express-generator
+            express [options] <project_name> #create an express project
+
+        ### express body parser installation
+            npm install body-parser --save
+            npm install cookie-parser --save
+
+            npm install ejs --save #install ejs template engine
+
+    ## mongodb
+        ### readings
+            [mongodb gui: it appears donesnt work on windows xp](http://robomongo.org/)
+
+    ## mongoose
+
+        ### examples
+
+            #### create a reference
+                var mongoose = require('mongoose');
+
+                var PostSchema = new mongoose.Schema({
+                  title: String,
+                  link: String,
+                  upvotes: {type: Number, default: 0},
+                  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }]
+                });
+
+                mongoose.model('Post', PostSchema);
+
+                var Post = mongoose.model('Post'); //get a reference of a model
+
+
+    ## curl tools
+        ### readings
+            [curl tutorial](http://www.ruanyifeng.com/blog/2011/09/curl.html)
+
+        ### cheat sheet
+            //For posting data:
+            curl --data "param1=value1&param2=value2" http://hostname/resource
+
+            //For file upload:
+            curl --form "fileupload=@filename.txt" http://hostname/resource
+
+            //RESTful HTTP Post:
+            curl -X POST -d @filename http://hostname/resource
+
+
+# readings
+    ## express
+        [express next funciton](http://stackoverflow.com/questions/13133071/express-next-function-what-is-it-really-for)
+        [mean stack tutorial] (https://thinkster.io/angulartutorial/mean-stack-tutorial/)
+        [upgrading from 3.0 to 4.0] (http://scotch.io/bar-talk/expressjs-4-0-new-features-and-upgrading-from-3-0)
+        [express4 routes tutorial] (http://scotch.io/tutorials/javascript/learn-to-use-the-new-router-in-expressjs-4)
+        [ejs template engine tutorial](http://scotch.io/tutorials/javascript/use-ejs-to-template-your-node-application)
+        [express-how-to-pass-app-instance-to-routes-from-a-different-file](http://stackoverflow.com/questions/10090414/express-how-to-pass-app-instance-to-routes-from-a-different-file)
+        [深入Node.js的模块机制](http://www.infoq.com/cn/articles/nodejs-module-mechanism)
+        [node js circular dependencies](http://selfcontained.us/2012/05/08/node-js-circular-dependencies/)
+    ## mongodb
+        [mongodb tutorial](http://www.tutorialspoint.com/mongodb/)
+        [mongoose api document] (http://mongoosejs.com/docs/api.html#model_Model.update)
+        [mongoose schema] (http://mongoosejs.com/docs/guide.html#indexes)
+        []
+
+    ## nodejs
+        [winston logger package](http://tostring.it/2014/06/23/advanced-logging-with-nodejs/)
+        [bunyan logger package](https://github.com/trentm/node-bunyan)
+        [compare bunyan and winston logger](http://strongloop.com/strongblog/compare-node-js-logging-winston-bunyan/)
+
+    ## others
+        [server side event] (http://www.html5rocks.com/en/tutorials/eventsource/basics/)
+
+        [socketio chat demo](http://socket.io/get-started/chat/)
+
+# Project Description
+    this is a project build with express framework 4.xx
+
+
+
+# TODOS
+    DONE
+        how to setup morgan logger --ignored
+
+    PENDING
+        how to use debug package : https://www.npmjs.org/package/debug
+        http://www.sitepoint.com/creating-restful-apis-express-4/
+        http://www.tutorialspoint.com/mongodb/
+        [immutable-js](https://github.com/facebook/immutable-js)
+
+        [mongoose pagination]
+            .find({}).sort('mykey', 1).skip(from).limit(to)
+
+        mongodb transaction 
+
+        http://stackoverflow.com/questions/19254029/angularjs-http-post-does-not-send-data
+        
+        angularjs ajax seq 
+
+            var toggleUser = function(userid){
+                UserService.list().then(function(data){
+                    console.log('returned data is: ', data);
+                    $scope.userlist = data.data;
+
+                    userid = userid? userid: $scope.userlist[0]._id;
+                    return LogService.list_money_log_by_uid(userid);
+                }).then(function(logdata){
+                    console.log('return money log data is: ', logdata);
+
+                    $scope.logs = logdata.data.logs;
+                });
+            };
+
+        http://stackoverflow.com/questions/643879/css-to-make-html-page-footer-stay-at-bottom-of-the-page-with-a-minimum-height
+
+        http://jsfiddle.net/carpasse/mcVfK/3/
+
+        before the project went to stable, add mongoose model validation check
+
+        how to catch exception, when mongodb isn't started first, and there is no exception thrown of any kind
+            https://www.joyent.com/developers/node/design/errors
+            http://stackoverflow.com/questions/7310521/node-js-best-practice-exception-handling
+
+        增加权限校验
+        nodejs security
+
+        post 需要加一个类别字段, 用于以后按类别筛选
+
+        mongo transaction:
+            http://docs.mongodb.org/manual/tutorial/perform-two-phase-commits/
+
+        list menus
+        
+        change board models
+        test log action
+        /admin/user after change user money, empty money input field
+        add socketio. create a chat room. to do this you have to add user authentication

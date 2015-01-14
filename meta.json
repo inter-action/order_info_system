@@ -1,0 +1,14 @@
+{
+    "name": "oder_info_system",
+    "version": "0.0.1",
+    "path":{
+        "src": {
+            "coffee": "src/coffee",
+            "js": "src/js"
+        },
+        "spec": {
+            "coffee": "spec/coffee",
+            "js": "spec/js"
+        }
+    }
+}

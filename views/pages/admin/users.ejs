@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include ../../partials/headers %>
+  <script type="text/javascript" src=""></script>
+</head>
+<body>
+  <% include ../../partials/header %>
+
+  <div ng-app="myApp" class="container-fluid">
+    <div ng-controller="AdminUserController">
+      <div class="row">
+        <section id="userlist" class="col-xs-2">
+          <div class="list-group">
+            <a href="#" class="list-group-item" ng-repeat="user in users" ng-click="change_user($index)" ng-class="{active: $index==toggled_index}">
+              {{user.username}}
+            </a>
+          </div>
+        </section>
+
+        <section id="user" class="col-xs-4">
+          <div class="panel panel-default" ng-show="!iscreation">
+            <div class="panel-heading">用户信息</div>
+            <div class="panel-body">
+              {{users[toggled_index] | json}}
+              <hr/>
+              <button type="button" class="btn btn-primary" ng-click="switch_user_pannel(!iscreation)">创建用户</button>
+            </div>
+          </div>
+
+          <div class="panel panel-default" ng-show="iscreation">
+            <div class="panel-heading">新建用户</div>
+            <div class="panel-body">
+              <form class="form-inline" role="form" novalidate name="newuser_form">
+                <div class="form-group">
+                  <div>
+                    <input type="text"
+                      required ng-model="username" size="10" 
+                      class="form-control"  placeholder="用户名" >
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div>
+                    <button type="button" class="btn btn-default" ng-click="switch_user_pannel(!iscreation)">取消</button>
+                    <button class="btn btn-primary" ng-disabled="newuser_form.$invalid" ng-click="new_user()">创建</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <section id="operations" class="col-xs-5">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <form  role="form" novalidate name="add_form">
+                <div class="form-group">
+                  <label for="money" class="col-sm-2 control-label">金额</label>
+                  <div class="col-sm-4">
+                    <label class="sr-only" for="money">Email address</label>
+                    <input type="number" 
+                    required ng-model="money"
+                    class="form-control" id="money" placeholder="金额" >
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-sm-5">
+                    <button class="btn btn-default" ng-disabled="add_form.$invalid || money == 0" ng-click="change_money()">充值</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+  </div>
+  
+  <% include ../../partials/footer %>
+</body>
+</html>
